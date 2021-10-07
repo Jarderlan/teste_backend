@@ -1,4 +1,5 @@
 import { Model } from 'objection'
+import Enderecos from './Enderecos'
 
 export default class Usuarios extends Model {
     nome!: string
@@ -32,5 +33,17 @@ export default class Usuarios extends Model {
             }
         };
     }
+
+    static relationMappings = () => ({
+        endereco: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Enderecos,
+
+            join: {
+                from: 'usuarios.endereco_id',
+                to: 'enderecos.id',
+            },
+        },
+    })
 
 }
