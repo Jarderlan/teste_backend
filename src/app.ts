@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import database from './config/database'
+import SingInController from './controllers/SingInController'
 
 const app = express()
 const PORT = process.env.API_PORT
@@ -12,18 +13,12 @@ class App {
         this.express = express()
         this.middlewares()
         database()
-        this.routes()
+        this.express.use(SingInController)
     }
 
     private middlewares() {
         this.express.use(express.json())
         this.express.use(cors())
-    }
-
-    private routes() {
-        this.express.get('/', (req, res) => {
-            return res.send('Coisou pivete')
-        })
     }
 }
 
