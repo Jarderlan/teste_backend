@@ -2,6 +2,7 @@ import { Model } from 'objection'
 import Enderecos from './Enderecos'
 
 export default class Usuarios extends Model {
+    id?: number
     nome!: string
     endereco_id!: number
     email!: string
@@ -11,7 +12,7 @@ export default class Usuarios extends Model {
     updated_at?: string | Date
 
     static get tableName() {
-        return 'usuarios';
+        return 'users';
     }
 
     static get idColumn() {
@@ -40,7 +41,7 @@ export default class Usuarios extends Model {
             modelClass: Enderecos,
 
             join: {
-                from: 'usuarios.endereco_id',
+                from: 'users.endereco_id',
                 to: 'enderecos.id',
             },
         },
