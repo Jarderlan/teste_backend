@@ -1,7 +1,8 @@
 import { Request, Response, Router } from 'express'
-import Enderecos from '../models/Enderecos'
-import Usuarios from '../models/Usuarios'
+import { NovoEndereco } from '../services/EnderecoService'
+import { NovoUsuario } from '../services/UsuarioService'
 import { ISingIn } from '../types/entities'
+import { errorHandler, sendResponse } from './CoreController'
 const router = Router()
 
 router.get('/teste', async (req: Request, res: Response) => {
@@ -11,25 +12,19 @@ router.get('/teste', async (req: Request, res: Response) => {
 router.post('/sing-in', async (req: Request, res: Response) => {
     const { usuario }: ISingIn = req.body
     try {
-        const endereco = await Enderecos.query().insert({
-            cep: usuario.endereco.cep,
-            logradouro: usuario.endereco.logradouro,
-            bairro: usuario.endereco.bairro,
-            localidade: usuario.endereco.localidade,
-            uf: usuario.endereco.uf,
-            numero: usuario.endereco.numero,
-            complemento: usuario.endereco.complemento,
-            ibge: usuario.endereco.ibge
-        })
+        const endereco = await NovoEndereco(usuario.endereco)
 
-        const usuariosI = await Usuarios.query().insert({
+        const usuariosI = await NovoUsuario({
             ...usuario,
             endereco_id: endereco.id,
         })
-        res.status(200).json(usuariosI);
+        sendResponse({
+            data: usuariosI,
+            code: 200,
+            res
+        })
     } catch (error) {
-        console.log(error)
-        res.status(400).json(error);
+        errorHandler({ error, res })
     }
 
 });
