@@ -1,4 +1,5 @@
 import { Model } from 'objection'
+import { IEndereco } from '../types/entities'
 import Enderecos from './Enderecos'
 
 export default class Usuarios extends Model {
@@ -10,6 +11,7 @@ export default class Usuarios extends Model {
     telefone!: string
     created_at?: string | Date
     updated_at?: string | Date
+    endereco: IEndereco
 
     static get tableName() {
         return 'users';
