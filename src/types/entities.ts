@@ -11,11 +11,15 @@ export interface IEndereco {
 }
 
 export interface IUsuario {
+    id?: number
     nome: string
-    cnpj: string
-    descricao: string
     endereco_id: number
     endereco: IEndereco
+    email: string
+    password: string
+    telefone: string
+    created_at?: string | Date
+    updated_at?: string | Date
 }
 
 export interface ISingIn {
