@@ -1,4 +1,5 @@
-export interface Endereco {
+export interface IEndereco {
+    id?: number
     cep: string
     logradouro: string
     bairro: string
@@ -9,16 +10,16 @@ export interface Endereco {
     ibge: string
 }
 
-export interface Usuario {
+export interface IUsuario {
     nome: string
     cnpj: string
     descricao: string
     endereco_id: number
-    endereco: Endereco
+    endereco: IEndereco
 }
 
-export interface SingIn {
-    usuario: Usuario
+export interface ISingIn {
+    usuario: IUsuario
 }
 
 export interface Empresa {
