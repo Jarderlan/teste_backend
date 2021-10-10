@@ -1,6 +1,16 @@
 import { Model } from "objection";
 
 export default class Enderecos extends Model {
+    id?: number
+    cep: string
+    logradouro: string
+    bairro: string
+    localidade: string
+    uf: string
+    numero: string
+    complemento: string
+    ibge: string
+    
     static get tableName() {
         return 'enderecos';
     }
