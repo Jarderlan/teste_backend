@@ -1,9 +1,9 @@
 import { Request, Response, Router } from 'express'
 import { knex } from '../config/database'
+import { errorHandler, sendResponse } from './CoreController'
 import { NovoEndereco } from '../services/EnderecoService'
 import { NovoUsuario } from '../services/UsuarioService'
 import { ISingIn } from '../types/entities'
-import { errorHandler, sendResponse } from './CoreController'
 
 const router = Router()
 
