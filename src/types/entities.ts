@@ -26,6 +26,11 @@ export interface ISingIn {
     usuario: IUsuario
 }
 
-export interface Empresa {
-
+export interface IEmpresa {
+    id?: number
+    nome: string
+    cnpj: string
+    descricao: string
+    created_at?: string | Date
+    updated_at?: string | Date
 }
