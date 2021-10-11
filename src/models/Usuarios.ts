@@ -1,6 +1,7 @@
 import { Model } from 'objection'
 import { IEndereco } from '../types/entities'
 import Enderecos from './Enderecos'
+import Empresas from './Empresas'
 
 export default class Usuarios extends Model {
     id?: number
@@ -47,6 +48,18 @@ export default class Usuarios extends Model {
                 to: 'enderecos.id',
             },
         },
+        gerencia: {
+            relation: Model.ManyToManyRelation,
+            modelClass: Empresas,
+            join: {
+                from: 'usuarios.id',
+                through: {
+                    from: 'usuario_empresas.user_id',
+                    to: 'usuario_empresas.empresa_id'
+                },
+                to: 'empresas.id'
+            }
+        }
     })
 
 }
