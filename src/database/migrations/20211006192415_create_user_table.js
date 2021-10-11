@@ -8,7 +8,7 @@ exports.up = function (knex) {
         table.string('nome', 500).notNullable();
         table.string('telefone', 15).notNullable();
         table.integer('endereco_id').unsigned().notNullable();
-        table.string('email').notNullable();
+        table.string('email').notNullable().unique();
         table.string('password').notNullable();
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('update_at').defaultTo(knex.fn.now());
