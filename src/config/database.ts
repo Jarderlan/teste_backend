@@ -7,9 +7,12 @@ types.setTypeParser(1700, function (val) {
 });
 
 const knexconfig = require("../../knexfile");
+
+export const knex = Knex(knexconfig);
+
 const database = () => {
-    const knex = Knex(knexconfig);
     Model.knex(knex)
 }
+
 
 export default database;
