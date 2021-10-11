@@ -4,8 +4,24 @@ import { errorHandler, sendResponse } from './CoreController'
 import { NovoEndereco } from '../services/EnderecoService'
 import { NovoUsuario } from '../services/UsuarioService'
 import { ISingIn } from '../types/entities'
+import Usuarios from '../models/Usuarios'
 
 const router = Router()
+
+router.get('/usuario', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id) ?? 0;
+    try {
+        const usuario = await Usuarios.query().withGraphFetched('[endereco,gerencia]')
+        sendResponse({
+            data: usuario,
+            code: 200,
+            res
+        })
+    } catch (error) {
+        errorHandler({ error, res })
+    }
+
+})
 
 router.post('/sing-in', async (req: Request, res: Response) => {
     const { usuario }: ISingIn = req.body
