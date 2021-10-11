@@ -10,7 +10,7 @@ router.post('/empresa', async (req: Request, res: Response) => {
     const { nome, cnpj, descricao }: IEmpresa = req.body
 
     try {
-        knex.transaction(async trx => {
+        await knex.transaction(async trx => {
             const empresa = await NovaEmpresa({ nome, cnpj, descricao }, trx)
             sendResponse({
                 data: empresa,
