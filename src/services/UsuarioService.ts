@@ -3,13 +3,7 @@ import { IUsuario } from "../types/entities";
 
 
 export async function NovoUsuario({
-    id,
-    nome,
-    endereco_id,
-    email,
-    password,
-    telefone,
-    endereco
+    id, nome, endereco_id, email, password, telefone, endereco
 }: IUsuario) {
     const usuario = Usuarios.query().insert({
         id: id,
