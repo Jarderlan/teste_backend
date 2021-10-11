@@ -14,7 +14,7 @@ export default class Usuarios extends Model {
     endereco: IEndereco
 
     static get tableName() {
-        return 'users';
+        return 'usuarios';
     }
 
     static get idColumn() {
@@ -43,7 +43,7 @@ export default class Usuarios extends Model {
             modelClass: Enderecos,
 
             join: {
-                from: 'users.endereco_id',
+                from: 'usuarios.endereco_id',
                 to: 'enderecos.id',
             },
         },

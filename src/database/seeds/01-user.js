@@ -4,10 +4,10 @@ const { hashPassword } = require("../../helpers/functions");
 // knex seed:run
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('users').del()
+  return knex('usuarios').del()
     .then(function () {
       // Inserts seed entries
-      return knex('users').insert([
+      return knex('usuarios').insert([
         {
           id: 1,
           nome: 'UserTeste',

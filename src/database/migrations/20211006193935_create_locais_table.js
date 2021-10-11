@@ -4,12 +4,10 @@ exports.up = function (knex) {
         table.increments();
         table.string('nome', 500).notNullable();
         table.integer('endereco_id').unsigned().notNullable();
-        // table.integer('empresa_id').unsigned().notNullable();
         table.timestamp('created_at').defaultTo(knex.fn.now());
         table.timestamp('update_at').defaultTo(knex.fn.now());
 
         table.foreign('endereco_id').references('id').inTable('enderecos');
-        // table.foreign('empresa_id').references('id').inTable('empresas');
     });
 };
 
