@@ -33,7 +33,7 @@ router.post('/sing-in', async (req: Request, res: Response) => {
 
             sendResponse({
                 data: usuariosI,
-                code: 200,
+                code: 201,
                 res
             })
         })

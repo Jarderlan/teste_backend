@@ -14,7 +14,7 @@ router.post('/empresa', async (req: Request, res: Response) => {
             const empresa = await NovaEmpresa({ nome, cnpj, descricao }, trx)
             sendResponse({
                 data: empresa,
-                code: 200,
+                code: 201,
                 res
             })
         })
