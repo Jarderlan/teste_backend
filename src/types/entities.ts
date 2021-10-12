@@ -42,9 +42,10 @@ export interface IEmpresa {
 export interface ILocais {
     id?: number
     nome: string
-    endereco_id: number,
-    endereco?: IEndereco,
+    endereco_id: number
+    usuario_id?: number
+    endereco?: IEndereco
     empresa?: IEmpresa
-    usuario?: IUsuario,
+    usuario?: IUsuario
     principal?: boolean
 }

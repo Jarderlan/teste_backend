@@ -11,7 +11,7 @@ export async function jwtAuthMiddleware(req: Request, res: Response, next) {
         if (error) {
             res.status(400).json(error)
         }
-        req['user_id'] = decoded.user_id
+        req.body.usuario_id = decoded.user_id
         next();
     })
 

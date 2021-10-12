@@ -18,7 +18,7 @@ router.get('/local/:id', jwtAuthMiddleware, async (req: Request, res: Response) 
 })
 
 router.post('/local', jwtAuthMiddleware, async (req: Request, res: Response) => {
-    const { nome, principal, endereco, empresa, usuario }: ILocais = req.body
+    const { nome, principal, endereco, empresa, usuario, usuario_id }: ILocais = req.body
     try {
         await knex.transaction(async trx => {
             const endLocal = await NovoEndereco(endereco, trx);
@@ -32,7 +32,7 @@ router.post('/local', jwtAuthMiddleware, async (req: Request, res: Response) => 
 
             const localResponsavel = await trx('local_responsaveis').insert({
                 local_id: local.id,
-                user_id: usuario.id,
+                user_id: usuario.id ?? usuario_id,
                 principal: principal
             })
 
