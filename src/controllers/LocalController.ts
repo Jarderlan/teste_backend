@@ -4,9 +4,10 @@ import { ILocais } from '../types/entities'
 import { errorHandler, sendResponse } from './CoreController'
 import { NovoEndereco } from '../services/EnderecoService'
 import { getLocal, NovoLocal } from '../services/LocaisService'
+import { jwtAuthMiddleware } from '../middleware/jwtAuth'
 
 const router = Router()
-router.get('/local/:id', async (req: Request, res: Response) => {
+router.get('/local/:id', jwtAuthMiddleware, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id) ?? 0
     const local = await getLocal(id)
     sendResponse({
@@ -16,7 +17,7 @@ router.get('/local/:id', async (req: Request, res: Response) => {
     })
 })
 
-router.post('/local', async (req: Request, res: Response) => {
+router.post('/local', jwtAuthMiddleware, async (req: Request, res: Response) => {
     const { nome, principal, endereco, empresa, usuario }: ILocais = req.body
     try {
         await knex.transaction(async trx => {
