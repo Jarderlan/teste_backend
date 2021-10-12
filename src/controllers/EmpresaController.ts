@@ -1,12 +1,13 @@
 import { Request, Response, Router } from 'express'
 import { knex } from '../config/database'
+import { jwtAuthMiddleware } from '../middleware/jwtAuth'
 import { NovaEmpresa } from '../services/EmpresaService'
 import { IEmpresa } from '../types/entities'
 import { errorHandler, sendResponse } from './CoreController'
 
 const router = Router()
 
-router.post('/empresa', async (req: Request, res: Response) => {
+router.post('/empresa', jwtAuthMiddleware, async (req: Request, res: Response) => {
     const { nome, cnpj, descricao }: IEmpresa = req.body
 
     try {
