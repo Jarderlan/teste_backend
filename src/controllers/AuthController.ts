@@ -21,4 +21,16 @@ router.post('/sing-in', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/valida-token', jwtAuthMiddleware, async (req: Request, res: Response) => {
+    const token = req.headers['x-access-token']
+    sendResponse({
+        data: {
+            token: token,
+            status: true
+        },
+        code: 200,
+        res
+    })
+})
+
 export default router
