@@ -34,3 +34,13 @@ export interface IEmpresa {
     created_at?: string | Date
     updated_at?: string | Date
 }
+
+export interface ILocais {
+    id?: number
+    nome: string
+    endereco_id: number,
+    endereco?: IEndereco,
+    empresa?: IEmpresa
+    usuario?: IUsuario,
+    principal?: boolean
+}
