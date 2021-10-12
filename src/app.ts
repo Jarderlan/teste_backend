@@ -3,6 +3,7 @@ import cors from 'cors'
 import database from './config/database'
 import SingInController from './controllers/SingInController'
 import EmpresaController from './controllers/EmpresaController'
+import LocalController from './controllers/LocalController'
 
 const app = express()
 const PORT = process.env.API_PORT
@@ -16,6 +17,7 @@ class App {
         database()
         this.express.use(SingInController)
         this.express.use(EmpresaController)
+        this.express.use(LocalController)
     }
 
     private middlewares() {
