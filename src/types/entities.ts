@@ -22,10 +22,14 @@ export interface IUsuario {
     updated_at?: string | Date
 }
 
-export interface ISingIn {
+export interface ISingUp {
     usuario: IUsuario
 }
 
+export interface ISingIn {
+    email: string,
+    password: string
+}
 export interface IEmpresa {
     id?: number
     nome: string
