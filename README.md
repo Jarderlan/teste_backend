@@ -15,3 +15,10 @@ Backend Node Express With Knex
 6 - Rodar comando: 'knex migrate:latest' (criar as tabela no banco de dados)
 <br>
 7 - Rodar comando: 'npm run dev'
+
+<h3>Disponibilizado arquivo Insomnia para testar as requisições</h3>
+Regras:
+para cadastrar Local precisa ter a empresa,
+para cadastrar empresa vc deve estar logado,
+logo precisa ter criado um usuario anteriormente
+
