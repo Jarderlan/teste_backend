@@ -3,18 +3,27 @@ import Enderecos from "../models/Enderecos";
 import { IEndereco } from "../types/entities";
 
 
-export async function NovoEndereco({
-    cep, logradouro, bairro, localidade, uf, numero, complemento, ibge
-}: IEndereco, trx: Transaction) {
-    const endereco = await Enderecos.query(trx).insert({
-        cep: cep,
-        logradouro: logradouro,
-        bairro: bairro,
-        localidade: localidade,
-        uf: uf,
-        numero: numero,
-        complemento: complemento,
-        ibge: ibge
-    })
-    return endereco
+export async function novoEndereco({
+    uf,
+    cep,
+    ibge,
+    bairro,
+    numero,
+    localidade,
+    logradouro,
+    complemento
+}: IEndereco,
+    trx: Transaction) {
+
+    return await Enderecos.query(trx)
+        .insert({
+            cep: cep,
+            logradouro: logradouro,
+            bairro: bairro,
+            localidade: localidade,
+            uf: uf,
+            numero: numero,
+            complemento: complemento,
+            ibge: ibge
+        })
 }

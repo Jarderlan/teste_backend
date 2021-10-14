@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express'
 import { knex } from '../config/database'
 import { errorHandler, sendResponse } from './CoreController'
-import { NovoEndereco } from '../services/EnderecoService'
-import { NovoUsuario } from '../services/UsuarioService'
+import { novoEndereco } from '../services/EnderecoService'
+import { novoUsuario } from '../services/UsuarioService'
 import { ISingUp } from '../types/entities'
 import Usuarios from '../models/Usuarios'
 
@@ -23,13 +23,13 @@ router.get('/usuario', async (req: Request, res: Response) => {
 
 })
 
-router.post('/sing-up', async (req: Request, res: Response) => {
+router.post('/sign-up', async (req: Request, res: Response) => {
     const { usuario }: ISingUp = req.body
     try {
         await knex.transaction(async trx => {
-            const endereco = await NovoEndereco(usuario.endereco, trx);
+            const endereco = await novoEndereco(usuario.endereco, trx);
 
-            const usuariosI = await NovoUsuario({ ...usuario, endereco_id: endereco.id, }, trx);
+            const usuariosI = await novoUsuario({ ...usuario, endereco_id: endereco.id, }, trx);
 
             sendResponse({
                 data: usuariosI,

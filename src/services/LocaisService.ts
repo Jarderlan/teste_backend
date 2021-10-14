@@ -3,16 +3,22 @@ import Locais from "../models/Locais";
 import { ILocais } from "../types/entities";
 
 export async function getLocal(id: number) {
-    const local = Locais.query().withGraphFetched('[endereco, empresa]').findById(id)
-    return local
+    
+    return await Locais.query()
+        .withGraphFetched('[endereco, empresa]')
+        .findById(id)
+
 }
 
-export async function NovoLocal({
-    nome, endereco_id
-}: ILocais, trx: Transaction) {
-    const local = Locais.query(trx).insert({
-        nome: nome,
-        endereco_id: endereco_id
-    })
-    return local
+export async function novoLocal({
+    nome,
+    endereco_id
+}: ILocais,
+    trx: Transaction) {
+
+    return await Locais.query(trx)
+        .insert({
+            nome: nome,
+            endereco_id: endereco_id
+        })
 }

@@ -11,12 +11,22 @@ import {
 } from "objection";
 import { IErrorHandlerResponse, ISendResponse } from "../types/types";
 
-export const sendResponse = ({ data, code, res }: ISendResponse): void => {
+export const sendResponse = ({
+    data,
+    code,
+    res
+}: ISendResponse): void => {
     res.status(code)
         .json(data);
 }
 
-export const errorHandler = ({ values, message, code, res, error }: IErrorHandlerResponse) => {
+export const errorHandler = ({
+    values,
+    message,
+    code,
+    res,
+    error
+}: IErrorHandlerResponse) => {
     res.header('Content-Type', 'application/json; charset=utf-8');
     console.log(error)
     if (error instanceof ValidationError) {

@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express'
 import { knex } from '../config/database'
 import { jwtAuthMiddleware } from '../middleware/jwtAuth'
-import { NovaEmpresa } from '../services/EmpresaService'
+import { novaEmpresa } from '../services/EmpresaService'
 import { IEmpresa } from '../types/entities'
 import { errorHandler, sendResponse } from './CoreController'
 
@@ -12,7 +12,7 @@ router.post('/empresa', jwtAuthMiddleware, async (req: Request, res: Response) =
 
     try {
         await knex.transaction(async trx => {
-            const empresa = await NovaEmpresa({ nome, cnpj, descricao }, trx)
+            const empresa = await novaEmpresa({ nome, cnpj, descricao }, trx)
             sendResponse({
                 data: empresa,
                 code: 201,
