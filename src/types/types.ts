@@ -13,3 +13,8 @@ export interface IErrorHandlerResponse {
     res: Response;
     error: any;
 }
+
+export interface ISingIn {
+    email: string,
+    password: string
+}

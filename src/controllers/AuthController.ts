@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { knex } from '../config/database'
 import { jwtAuthMiddleware } from '../middleware/jwtAuth'
 import { signIn } from '../services/AuthService'
-import { ISingIn } from '../types/entities'
+import { ISingIn } from '../types/types'
 import { errorHandler, sendResponse } from './CoreController'
 
 const router = Router()

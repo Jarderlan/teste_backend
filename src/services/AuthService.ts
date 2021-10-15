@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import Usuarios from '../models/Usuarios'
-import { ISingIn } from '../types/entities'
+import { ISingIn } from '../types/types'
 require('dotenv').config()
 
 const Secret = process.env.JWT_SECRET
